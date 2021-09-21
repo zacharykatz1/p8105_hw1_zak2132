@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Problem 1
 
 Problem 1 asks us to create a data frame comprised of:
+
 * A random sample of size 10 from a standard normal distribution
 * A logical vector indicating whether elements of the sample are greater than 0
 * A character vector of length 10
@@ -22,11 +23,17 @@ Problem 1 asks us to create a data frame comprised of:
 Let's create the data frame.
 
 ```{r create_data_frame}
+
+# Create the vectors separately
 rand_sample <- rnorm(10)
 logical_vector <- rand_sample > 0
 character_vector <- c("s", "t", "r", "a", "w", "b", "e", "r", "r", "y")
 factor_vector <- factor(c("first", "second", "third", "first", "second", "third", "first", "second", "third", "first"))
+
+# Create a data frame from the vectors
 test_data_frame <- data.frame(rand_sample, logical_vector, character_vector, factor_vector)
+
+# Examine the data frame
 test_data_frame
 str(test_data_frame)
 ```
@@ -36,6 +43,7 @@ str(test_data_frame)
 Now that we've created the data frame, we try to take the mean of each variable.
 
 ```{r try_mean}
+# Take the means of each vector
 sample_mean <- mean(test_data_frame$rand_sample)
 mean_positive <- mean(test_data_frame$logical_vector)
 mean_character_vector <- mean(test_data_frame$character_vector)
@@ -51,6 +59,7 @@ mean_factor_vector <- mean(test_data_frame$factor_vector)
 Finally, we want to convert the logical, character, and factor variables to a numeric variable if possible.
 
 ```{r convert_to_numeric, results="hide"}
+# Convert non-numeric vectors to numeric vectors
 convert_logical <- as.numeric(logical_vector)
 convert_logical
 
@@ -71,6 +80,7 @@ convert_factor
 #### Load the penguins dataset
 
 ```{r load_penguins_dataset}
+# Load penguins dataset
 data("penguins", package = "palmerpenguins")
 ```
 
@@ -78,8 +88,8 @@ data("penguins", package = "palmerpenguins")
 
 First, we want to take a quick look at data and its structure.
 ```{r examine_penguins_data}
+# Examine penguins data set
 penguins
-
 str(penguins)
 ```
 
@@ -91,7 +101,10 @@ We are also asked to calculate the mean flipper length, which is `r mean(penguin
 
 We'd like to create and export a scatterplot of bill length vs. flipper length.
 ```{r scatterplot}
+# Load tidyverse packages
 library(tidyverse)
+
+# Plot and save
 ggplot(data=penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
-ggsave(scatterplot_hw1)
+ggsave("scatterplot_hw1.jpg")
 ```
