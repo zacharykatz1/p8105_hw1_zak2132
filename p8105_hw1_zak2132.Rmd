@@ -67,3 +67,24 @@ convert_factor
 * Converting the character vector to a numeric vector resulted in **"NAs introduced by coercion"**, leading to a vector composed only of 10 NAs.
 
 ## Problem 2
+
+#### Load the penguins dataset
+
+```{r load_penguins_dataset}
+data("penguins", package = "palmerpenguins")
+```
+
+#### Describe the penguins dataset
+
+First, we want to take a quick look at data and its structure.
+```{r examine_penguins_data}
+penguins
+
+str(penguins)
+```
+
+The names of the variables in the dataset are `r names(penguins)` and the size of the dataset is `r nrow(penguins)` rows and `r ncol(penguins)` columns.
+
+We are also asked to calculate the mean flipper length, which is `r mean(penguins$flipper_length_mm, na.rm = T)` mm, after removing NA entries in the flipper length column.
+
+#### Scatterplot
