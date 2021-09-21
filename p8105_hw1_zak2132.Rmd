@@ -1,0 +1,42 @@
+---
+title: "p8105_hw1_zak2132"
+author: "Zachary Katz"
+date: "9/21/2021"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Problem 1
+
+Problem 1 asks us to create a data frame comprised of:
+* A random sample of size 10 from a standard normal distribution
+* A logical vector indicating whether elements of the sample are greater than 0
+* A character vector of length 10
+* A factor vector of length 10, with 3 different factor "levels"
+
+Let's create the data frame.
+
+```{r create_data_frame}
+rand_sample <- rnorm(10)
+logical_vector <- rand_sample > 0
+character_vector <- c("s", "t", "r", "a", "w", "b", "e", "r", "r", "y")
+factor_vector <- factor(c("first", "second", "third", "first", "second", "third", "first", "second", "third", "first"))
+test_data_frame <- data.frame(rand_sample, logical_vector, character_vector, factor_vector)
+test_data_frame
+str(test_data_frame)
+```
+Now that we've created the data frame, we try to take the mean of each variable.
+
+```{r try_mean}
+sample_mean <- mean(test_data_frame$rand_sample)
+mean_positive <- mean(test_data_frame$logical_vector)
+mean_character_vector <- mean(test_data_frame$character_vector)
+mean_factor_vector <- mean(test_data_frame$factor_vector)
+```
+
+* The mean of the random sample is `r sample_mean` and the mean of the logical vector is `r mean_positive`, which is the proportion of the random sample greater than 0.
+
+* When we try to find the mean of the character and factor vectors, we learn that the mean function does not accept arguments that are not numeric or logical, and therefore returns NA.
