@@ -88,3 +88,10 @@ The names of the variables in the dataset are `r names(penguins)` and the size o
 We are also asked to calculate the mean flipper length, which is `r mean(penguins$flipper_length_mm, na.rm = T)` mm, after removing NA entries in the flipper length column.
 
 #### Scatterplot
+
+We'd like to create and export a scatterplot of bill length vs. flipper length.
+```{r scatterplot}
+library(tidyverse)
+ggplot(data=penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
+ggsave(scatterplot_hw1)
+```
