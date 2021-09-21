@@ -17,6 +17,8 @@ Problem 1 asks us to create a data frame comprised of:
 * A character vector of length 10
 * A factor vector of length 10, with 3 different factor "levels"
 
+### Create the data frame
+
 Let's create the data frame.
 
 ```{r create_data_frame}
@@ -28,6 +30,9 @@ test_data_frame <- data.frame(rand_sample, logical_vector, character_vector, fac
 test_data_frame
 str(test_data_frame)
 ```
+
+#### Find the means
+
 Now that we've created the data frame, we try to take the mean of each variable.
 
 ```{r try_mean}
@@ -40,3 +45,25 @@ mean_factor_vector <- mean(test_data_frame$factor_vector)
 * The mean of the random sample is `r sample_mean` and the mean of the logical vector is `r mean_positive`, which is the proportion of the random sample greater than 0.
 
 * When we try to find the mean of the character and factor vectors, we learn that the mean function does not accept arguments that are not numeric or logical, and therefore returns NA.
+
+#### Convert vectors
+
+Finally, we want to convert the logical, character, and factor variables to a numeric variable if possible.
+
+```{r convert_to_numeric, results="hide"}
+convert_logical <- as.numeric(logical_vector)
+convert_logical
+
+convert_character <- as.numeric(character_vector)
+convert_character
+
+convert_factor <- as.numeric(factor_vector)
+convert_factor
+```
+* Converting the logical vector to a numeric vector changed **true to 1** and **false to 0**. 
+
+* Converting the factor vector to a numeric vector changed **first level to 1, second level to 2, and third level to 3**.
+
+* Converting the character vector to a numeric vector resulted in **"NAs introduced by coercion"**, leading to a vector composed only of 10 NAs.
+
+## Problem 2
