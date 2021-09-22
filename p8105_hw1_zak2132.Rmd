@@ -90,7 +90,12 @@ First, we want to take a quick look at data and its structure.
 ```{r examine_penguins_data}
 # Examine penguins data set
 penguins
+
+# Structure of the data
 str(penguins)
+
+# Summary of the data
+summary(penguins)
 ```
 
 The names of the variables in the dataset are `r names(penguins)` and the size of the dataset is `r nrow(penguins)` rows and `r ncol(penguins)` columns.
