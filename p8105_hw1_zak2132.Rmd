@@ -7,6 +7,9 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+
+# Load tidyverse packages
+library(tidyverse)
 ```
 
 ## Problem 1
@@ -44,10 +47,10 @@ Now that we've created the data frame, we try to take the mean of each variable.
 
 ```{r try_mean}
 # Take the means of each vector
-sample_mean <- mean(test_data_frame$rand_sample)
-mean_positive <- mean(test_data_frame$logical_vector)
-mean_character_vector <- mean(test_data_frame$character_vector)
-mean_factor_vector <- mean(test_data_frame$factor_vector)
+sample_mean <- mean(pull(test_data_frame, rand_sample))
+mean_positive <- mean(pull(test_data_frame, logical_vector))
+mean_character_vector <- mean(pull(test_data_frame, character_vector))
+mean_factor_vector <- mean(pull(test_data_frame, factor_vector))
 ```
 
 * The mean of the random sample is `r sample_mean` and the mean of the logical vector is `r mean_positive`, which is the proportion of the random sample greater than 0.
@@ -106,8 +109,6 @@ We are also asked to calculate the mean flipper length, which is `r mean(penguin
 
 We'd like to create and export a scatterplot of bill length vs. flipper length.
 ```{r scatterplot}
-# Load tidyverse packages
-library(tidyverse)
 
 # Plot and save
 ggplot(data=penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
