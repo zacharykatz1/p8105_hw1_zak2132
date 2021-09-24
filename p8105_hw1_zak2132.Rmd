@@ -122,7 +122,7 @@ We are also asked to calculate the mean flipper length, which is `r mean(penguin
 
 Finally, we'd like to create and export a scatterplot of bill length vs. flipper length.
 
-```{r scatterplot}
+```{r scatterplot, warning=FALSE}
 
 # Plot the graph
 ggplot(data = penguins, 
@@ -132,5 +132,5 @@ ggplot(data = penguins,
       geom_point()
 
 # Save the graph
-ggsave("scatterplot_hw1.jpg")
+ggsave("scatterplot_hw1.png")
 ```
