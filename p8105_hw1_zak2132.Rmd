@@ -139,7 +139,12 @@ ggplot(data = penguins,
        aes(x = bill_length_mm, 
            y = flipper_length_mm, 
            color = species)) + 
-      geom_point()
+      geom_point() + 
+   labs(
+      title = "Flipper length vs. bill length",
+      x = "Bill length (mm)",
+      y = "Flipper length (mm)"
+   )
 
 # Save the graph
 ggsave("flipper_v_bill_scatterplot.png")
