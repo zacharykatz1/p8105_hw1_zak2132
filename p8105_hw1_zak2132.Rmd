@@ -26,15 +26,24 @@ Problem 1 asks us to create a data frame comprised of:
 First, we create the data frame by constructing four different variables (vectors), and then binding them together using the `data.frame` command.
 
 ```{r create_data_frame}
+# Set a seed to reproduce
+set.seed(123)
 
 # Create the variables/vectors separately
+# numeric vector
 rand_sample <- rnorm(10)
+# logical vector if rand_sample is positive
 logical_vector <- rand_sample > 0
-character_vector <- c("s", "t", "r", "a", "w", "b", "e", "r", "r", "y")
-factor_vector <- factor(c("first", "second", "third", "first", "second", "third", "first", "second", "third", "first"))
+# string vector of first 10 alphabet letters
+character_vector <- letters[1:10]
+# factor variable with 3 levels
+factor_vector <- factor(sample(
+      x = c("first", "second", "third"),
+      size = 10,
+      replace = TRUE))
 
 # Construct a data frame from the vectors
-test_data_frame <- data.frame(rand_sample, logical_vector, character_vector, factor_vector)
+test_data_frame <- tibble(rand_sample, logical_vector, character_vector, factor_vector)
 
 # Examine the data frame
 test_data_frame
@@ -66,15 +75,15 @@ Finally, we want to convert the logical, character, and factor variables to nume
 
 ```{r convert_to_numeric, results="hide"}
 # Convert logical vector to numeric vector
-convert_logical_to_numeric <- as.numeric(logical_vector)
+convert_logical_to_numeric <- as.numeric(pull(test_data_frame, logical_vector))
 convert_logical_to_numeric
 
 # Convert character vector to numeric vector
-convert_character_to_numeric <- as.numeric(character_vector)
+convert_character_to_numeric <- as.numeric(pull(test_data_frame, character_vector))
 convert_character_to_numeric
 
 # Convert factor vector to numeric vector
-convert_factor_to_numeric <- as.numeric(factor_vector)
+convert_factor_to_numeric <- as.numeric(pull(test_data_frame, factor_vector))
 convert_factor_to_numeric
 ```
 * Converting the logical vector to a numeric vector changed **true to 1** and **false to 0**. 
@@ -132,5 +141,7 @@ ggplot(data = penguins,
       geom_point()
 
 # Save the graph
-ggsave("scatterplot_hw1.png")
+ggsave("flipper_v_bill_scatterplot.png")
 ```
+
+This graph shows a positive linear relationship between penguin flipper length and bill length. This relationship seems to hold for each of the three species shown in the graph (Adelie, Chinstrap, Gentoo), though the trend for the Adelie species in particular seems to exhibit more variation.
